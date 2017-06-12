@@ -17,13 +17,6 @@ public class Solution {
             scheduleHashMap.put(carrierRoute.getRoute().get(i), new Schedule(carrierRoute.getRoute().get(i).getRoutes()));
         }
     }
-
-    /*
-    在所有选定的车辆停靠点的集合运行一次TSP算法，得到装载车的行驶路径
-    */
-    void tsp(){
-
-    }
     /*
     计算完整解的总代价
      */

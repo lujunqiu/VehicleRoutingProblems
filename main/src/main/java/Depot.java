@@ -6,14 +6,20 @@ import java.util.HashMap;
  * 车辆停靠节点类
  */
 public class Depot extends Point{
-    ArrayList<UAVRoute> routes ;//车辆停靠节点对应的无人机飞行routes集合
+    private char id;//标识符号，用字母标识区别与客户节点的数字id
+    private ArrayList<UAVRoute> routes ;//车辆停靠节点对应的无人机飞行routes集合
     Depot(){
         super();
     }
 
-    Depot(int x,int y) {
+    Depot(char id, int x, int y) {
         super(x, y);
+        this.id = id;
         routes = new ArrayList<UAVRoute>();
+    }
+
+    public char getId() {
+        return id;
     }
 
     public ArrayList<UAVRoute> getRoutes() {

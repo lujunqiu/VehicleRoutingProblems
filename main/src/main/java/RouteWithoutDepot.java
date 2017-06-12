@@ -30,7 +30,7 @@ public class RouteWithoutDepot implements Route{
         for (int i = 0; i < route.size() - 1; i++) {
             distance = distance + route.get(i).getDistance(route.get(i + 1));
         }
-        return distance;
+        return distance + route.get(route.size() - 1).getDistance(route.get(0));
     }
 
     public void hebing(){//合并比较短的route
