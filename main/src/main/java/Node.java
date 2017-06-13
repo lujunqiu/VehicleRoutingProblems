@@ -3,7 +3,7 @@
  * 客户节点类
  */
 public class Node extends Point {
-    private int id;//客户节点的数字标识符
+    private int id;//客户节点的数字标识符,唯一标识
     private int demand;//每个客户的需求量
     private boolean ifVisited = false;//节点是否被访问
     Node(){
@@ -34,5 +34,24 @@ public class Node extends Point {
 
     public void setIfVisited(boolean ifVisited) {
         this.ifVisited = ifVisited;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Node other = (Node) obj;
+        if (this.id != other.getId()) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

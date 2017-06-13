@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 /**
@@ -10,21 +11,29 @@ public class Solution {
     private HashMap<Depot, Schedule> scheduleHashMap;//每个停靠点的无人机调度
     private double cost = 0;
 
-    Solution(CarrierRoute carrierRoute){
+    Solution(CarrierRoute carrierRoute) {
         this.carrierRoute = carrierRoute;
         scheduleHashMap = new HashMap<Depot, Schedule>();
         for (int i = 0; i < carrierRoute.getRoute().size(); i++) {
             scheduleHashMap.put(carrierRoute.getRoute().get(i), new Schedule(carrierRoute.getRoute().get(i).getRoutes()));
         }
     }
+
     /*
     计算完整解的总代价
      */
-    void calculateCost(){
-
+    public double calculateCost() {
+        cost = cost + carrierRoute.getDistance();//装载车行驶的路径
     }
 
     public double getCost() {
         return cost;
+    }
+
+    /*
+    得到所有车辆停靠点的无人机调度安排
+     */
+    public Collection<Schedule> getSchedules(){
+        return scheduleHashMap.values();
     }
 }

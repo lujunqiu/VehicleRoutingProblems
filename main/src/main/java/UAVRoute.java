@@ -4,7 +4,7 @@ import java.util.ArrayList;
  * Created by qiu on 17-6-7.
  */
 public class UAVRoute implements Route {
-    final int capacity = 100;//无人机单次飞行的最大距离
+    final int capacity = 100;//无人机单次飞行的最大距离,UAVRoute的路径长度不能超过这个数值
     ArrayList<Point> route;
 
     UAVRoute(){
