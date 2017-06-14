@@ -33,6 +33,17 @@ public class RouteWithoutDepot implements Route{
         return distance + route.get(route.size() - 1).getDistance(route.get(0));
     }
 
+    public int compareTo(Object o) {
+        RouteWithoutDepot other = (RouteWithoutDepot) o;
+        if (getDistance() > other.getDistance()) {
+            return 1;
+        }
+        if (getDistance() < other.getDistance()) {
+            return -1;
+        }
+        return 0;
+    }
+
     public void hebing(){//合并比较短的route
 
     }

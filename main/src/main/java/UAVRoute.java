@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /**
  * Created by qiu on 17-6-7.
  */
-public class UAVRoute implements Route {
+public class UAVRoute implements Route{
     final int capacity = 100;//无人机单次飞行的最大距离,UAVRoute的路径长度不能超过这个数值
     ArrayList<Point> route;
 
@@ -29,4 +29,17 @@ public class UAVRoute implements Route {
         }
         return distance + route.get(route.size() - 1).getDistance(route.get(0));
     }
+
+
+    public int compareTo(Object o) {
+        UAVRoute other = (UAVRoute) o;
+        if (getDistance() > other.getDistance()) {
+            return 1;
+        }
+        if (getDistance() < other.getDistance()) {
+            return -1;
+        }
+        return 0;
+    }
+
 }

@@ -34,9 +34,20 @@ public class CarrierRoute implements Route{
         return distance + route.get(route.size() - 1).getDistance(route.get(0));
     }
 
+    public int compareTo(Object o) {
+        CarrierRoute other = (CarrierRoute) o;
+        if (getDistance() > other.getDistance()) {
+            return 1;
+        }
+        if (getDistance() < other.getDistance()) {
+            return -1;
+        }
+        return 0;
+    }
+
     /*
-    在所有选定的车辆停靠点的集合运行贪婪算法求解TSP，得到装载车的行驶路径
-    */
+        在所有选定的车辆停靠点的集合运行贪婪算法求解TSP，得到装载车的行驶路径
+        */
     public void tsp(){
 
         int number = route.size();//TSP节点数量
@@ -81,12 +92,11 @@ public class CarrierRoute implements Route{
         CarrierRoute carrierRoute = new CarrierRoute();
         Depot depot0 = new Depot('A',0, 0);
         Depot depot1 = new Depot('B',1, 1);
-        Depot depot2 = new Depot('C',2, 4);
+        Depot depot2 = new Depot('C',2, -1);
         Depot depot3 = new Depot('D',3, 3);
-        Depot depot4 = new Depot('E',2, 1);
+        Depot depot4 = new Depot('E',1, -3);
         Depot depot5 = new Depot('F',5, 3);
         Depot depot6 = new Depot('G',6, 2);
-        Depot depot7 = new Depot('H',4, 5);
         carrierRoute.addPoint(depot0);
         carrierRoute.addPoint(depot1);
         carrierRoute.addPoint(depot2);
@@ -94,7 +104,6 @@ public class CarrierRoute implements Route{
         carrierRoute.addPoint(depot4);
         carrierRoute.addPoint(depot5);
         carrierRoute.addPoint(depot6);
-        carrierRoute.addPoint(depot7);
         carrierRoute.tsp();
         for (Depot depot:
              carrierRoute.getRoute()) {

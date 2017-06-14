@@ -24,6 +24,7 @@ public class Solution {
      */
     public double calculateCost() {
         cost = cost + carrierRoute.getDistance();//装载车行驶的路径
+
     }
 
     public double getCost() {
