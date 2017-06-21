@@ -1,6 +1,6 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import com.sun.javafx.collections.MappingChange;
+
+import java.util.*;
 
 /**
  * Created by qiu on 17-6-9.
@@ -24,7 +24,12 @@ public class Solution {
      */
     public double calculateCost() {
         cost = cost + carrierRoute.getDistance();//装载车行驶的路径
-
+        Set<Map.Entry<Depot, Schedule>> entrySet = scheduleHashMap.entrySet();
+        for (Map.Entry<Depot, Schedule> entry : entrySet) {
+            Schedule schedule = entry.getValue();
+            cost = cost + schedule.getCost();
+        }
+        return cost;
     }
 
     public double getCost() {

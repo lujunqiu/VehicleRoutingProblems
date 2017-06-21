@@ -5,8 +5,8 @@ import java.util.*;
  * 停靠点的无人机调度类
  */
 public class Schedule {
-    final int uavNumber = 10;//每辆装载车的无人机数量，0-9标识了无人机的id
-//    final int uavNumber = 5;//每辆装载车的无人机数量，0-9标识了无人机的id
+    private final int uavNumber = 10;//每辆装载车的无人机数量，0-9标识了无人机的id
+//    final int uavNumber = 5;//测试
     private ArrayList<UAVRoute> routes;//需要调度的无人机飞行路径
     private HashMap<UAVRoute, Integer> hashMap;//调度的结果保存在Map之中,Integer值标识了无人机的id
     private HashMap<Integer, Set<UAVRoute>> integerSetHashMap;//调度结果的另一种保存方式，更换了Key与Value
@@ -40,29 +40,29 @@ public class Schedule {
         } else {//无人机数量小于routes的数量，意味着有的无人机需要跑2个或者以上的routes
             //将routes里面的UAVRoute排序，这里我们需要降序,默认是升序排序，需要重新给定比较器
 
-//            Collections.sort(routes, new Comparator<UAVRoute>() {
-//                public int compare(UAVRoute o1, UAVRoute o2) {
-//                    if (o1.getDistance() > o2.getDistance()) {
-//                        return -1;
-//                    }
-//                    if (o1.getDistance() < o2.getDistance()) {
-//                        return 1;
-//                    }
-//                    return 0;
-//                }
-//            });
-
             Collections.sort(routes, new Comparator<UAVRoute>() {
                 public int compare(UAVRoute o1, UAVRoute o2) {
-                    if (o1.test > o2.test) {
+                    if (o1.getDistance() > o2.getDistance()) {
                         return -1;
                     }
-                    if (o1.test < o2.test) {
+                    if (o1.getDistance() < o2.getDistance()) {
                         return 1;
                     }
                     return 0;
                 }
             });
+//            //测试代码
+//            Collections.sort(routes, new Comparator<UAVRoute>() {
+//                public int compare(UAVRoute o1, UAVRoute o2) {
+//                    if (o1.test > o2.test) {
+//                        return -1;
+//                    }
+//                    if (o1.test < o2.test) {
+//                        return 1;
+//                    }
+//                    return 0;
+//                }
+//            });
 
 
             // 表示平均每个无人机需要访问的UAVRoute的个数
@@ -99,10 +99,24 @@ public class Schedule {
     }
 
     /*
-    计算该次调度安排无人机的飞行时间,计算从所有无人机起飞到完成访问的最长的时间即可，无人机并行完成这些任务
+    无人机并行完成这些任务，计算从所有无人机起飞到完成访问的最长的时间即可,无人机更换的电池的时间忽略
     */
     public double getCost(){
-
+        double maxCost = 0;
+        Set<Map.Entry<Integer, Set<UAVRoute>>> set = integerSetHashMap.entrySet();
+        for (Map.Entry entry :
+                set) {
+            double temp = 0;
+            Set<UAVRoute> set1 = (Set<UAVRoute>) entry.getValue();
+            for (UAVRoute e :
+                    set1) {
+                temp = temp + e.getDistance();
+            }
+            if (temp > maxCost) {
+                maxCost = temp;
+            }
+        }
+        return maxCost;
     }
 
     /*
