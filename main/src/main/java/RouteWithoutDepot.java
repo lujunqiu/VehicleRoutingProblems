@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class RouteWithoutDepot implements Route{
     int capacity = 100;//无人机单次飞行的最大距离
     ArrayList<Node> route;
+    double cost = 0;
 
     RouteWithoutDepot(){
         super();
@@ -44,12 +45,21 @@ public class RouteWithoutDepot implements Route{
         return 0;
     }
 
+    private void setCost(){
+        this.cost = getDistance() / this.route.size();
+    }
+
     public void hebing(){//合并比较短的route
 
     }
 
     public void chaifeng(){//拆分比较长的route
 
+    }
+
+    public double getCost() {
+        setCost();//计算路径的代价
+        return cost;
     }
 
 }
