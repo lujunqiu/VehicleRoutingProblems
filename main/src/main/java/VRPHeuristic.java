@@ -29,14 +29,14 @@ public class VRPHeuristic {
 
 
     public Solution construct(){//从路径候选集中构造初始解
-
+        return null;
     }
     private List<RouteWithoutDepot> pick(){//从候选集中选择无人机路径(不含停靠点)得到路径集合,合并较短路径
-
+        return null;
     }
 
     public Solution tabuSearch(Solution s) {
-
+        return null;
     }
 
     public void update(Solution s){//利用解更新候选集中的路径
@@ -45,7 +45,7 @@ public class VRPHeuristic {
 
     public static void main(String[] args) {
         VRPHeuristic vrpHeuristic = new VRPHeuristic();
-        while () {//终止条件
+        while (true) {//终止条件
             vrpHeuristic.initializeRouteSet();//初始化路径候选集
             Solution solution = vrpHeuristic.construct();//构造初始解
             Solution tabuSolution = vrpHeuristic.tabuSearch(solution);

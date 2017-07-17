@@ -3,14 +3,16 @@
  */
 public class test {
     public static void main(String[] args) {
-        String string1 = "aabcc";
+        String string1 = "aabcc ";
         String string2 = "dbbca";
         String string3 = "aadbbbaccc";
         String string4 = "aadbbcbcac";
-        System.out.println(isInterleave(string1, string2, string3));
-        System.out.println(isInterleave(string1, string2, string4));
-        System.out.println(EditorialSolution(string1, string2, string3));
-        System.out.println(EditorialSolution(string1, string2, string4));
+        StringBuffer stringBuffer = new StringBuffer(string1);
+        System.out.println(stringBuffer.deleteCharAt(stringBuffer.length() - 1));
+//        System.out.println(isInterleave(string1, string2, string3));
+//        System.out.println(isInterleave(string1, string2, string4));
+//        System.out.println(EditorialSolution(string1, string2, string3));
+//        System.out.println(EditorialSolution(string1, string2, string4));
     }
 
     /*

@@ -43,5 +43,5 @@ public class UAVRoute implements Route{
         }
         return 0;
     }
-
+    public ArrayList<Point> getRoute(){return this.route;}
 }

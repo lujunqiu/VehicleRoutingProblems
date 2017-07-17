@@ -9,10 +9,10 @@ public class Algorithmn {
 
 }
 interface Initialize{
-    List<RouteWithoutDepot> initialize(客户点候选集);//初始化路径候选集
+    List<RouteWithoutDepot> initialize();//初始化路径候选集
 }
 
 interface PickDepot{
-    CarrierRoute pickDepot(停靠点候选集);//选择停靠点
+    CarrierRoute pickDepot();//选择停靠点
 }
 

@@ -69,7 +69,7 @@ public class CarrierRoute implements Route{
         for (int i = 1; i < number; i++) {
             double tempDistance = Double.MAX_VALUE;
             for (int j = 0; j < number; j++) {
-                if (tags[j] == false && tempDistance > distance[visit[i - 1]][j]) {
+                if (tags[j] == false && tempDistance < distance[visit[i - 1]][j]) {
                     tempDistance = distance[visit[i - 1]][j];
                     visit[i] = j;
                 }
