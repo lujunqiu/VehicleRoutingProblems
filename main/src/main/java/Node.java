@@ -37,6 +37,10 @@ public class Node extends Point {
     }
 
     @Override
+    public String toString() {
+        return id + " ";
+    }
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

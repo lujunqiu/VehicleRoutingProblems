@@ -20,7 +20,7 @@ public class VRPHeuristic {
     }
 
     public void initializeRouteSet(){//初始化候选集
-        RouteToSelected = initialize.initialize();
+        RouteToSelected = initialize.initialize(null);
     }
 
     public CarrierRoute pickDepot(){//选择停靠点并且解决停靠点TSP

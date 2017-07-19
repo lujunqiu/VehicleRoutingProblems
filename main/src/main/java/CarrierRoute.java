@@ -27,6 +27,9 @@ public class CarrierRoute implements Route{
 
     public double getDistance(){
         double distance = 0;//环路的长度
+        if (route.size() == 0 || route.size() == 1) {
+            return 0;
+        }
         for (int i = 0; i < route.size() - 1; i++) {
             distance = distance + route.get(i).getDistance(route.get(i + 1));
         }

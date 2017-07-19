@@ -127,6 +127,12 @@ public class Factory {
         return myp.getDepots();
     }
 
+    /*
+    得到基站节点，视为特殊的停靠点,基站节点id的ASCII码值为０
+     */
+    public Depot getBase(){
+        return new Depot((char)0, 320, 460);//修改这里的同时需要修改paint方法
+    }
     public static void main(String[] args) {
         Factory f = new Factory();
 
@@ -207,7 +213,7 @@ class MyPanel extends JPanel {
             g.drawOval(a.first.intValue(), a.second.intValue(), size, size);
         }
         g.setColor(Color.RED);
-        g.fillOval(320, 460, 10, 10);
+        g.fillOval(320, 460, 10, 10);//修改这里的同时，需要修改getBase()方法
         g.setColor(Color.BLUE);
         for (TwoTuple<Integer, Integer> b : DepotsCenter) {
             g.fillOval(b.first, b.second, 7, 7);

@@ -12,6 +12,10 @@ public class RouteWithoutDepot implements Route{
         route = new ArrayList<Node>();
     }
 
+    public boolean ifOversize(){
+        return getDistance() >= capacity ? true : false;
+    }
+
     public void addPoint(Point node){
         route.add((Node) node);
     }
@@ -28,6 +32,9 @@ public class RouteWithoutDepot implements Route{
 
     public double getDistance(){
         double distance = 0;
+        if (route.size() == 0 || route.size() == 1) {
+            return 0;
+        }
         for (int i = 0; i < route.size() - 1; i++) {
             distance = distance + route.get(i).getDistance(route.get(i + 1));
         }
@@ -62,4 +69,13 @@ public class RouteWithoutDepot implements Route{
         return cost;
     }
 
+    @Override
+    public String toString() {
+        String s="[";
+        for(Node x:route){
+            s=s+x+" ";
+        }
+        s=s+"]";
+        return s;
+    }
 }
