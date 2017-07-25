@@ -12,6 +12,10 @@ public class RouteWithoutDepot implements Route{
         route = new ArrayList<Node>();
     }
 
+    public boolean ifContains(Node node){
+        return route.contains(node);
+    }
+
     public boolean ifOversize(){
         return getDistance() >= capacity ? true : false;
     }

@@ -10,7 +10,7 @@ interface Initialize{
 }
 
 interface PickDepot{
-    CarrierRoute pickDepot();//选择停靠点
+    CarrierRoute pickDepot(List<Depot> depots,List<RouteWithoutDepot> routes);//选择停靠点
 }
 
 public class Algorithmn {
@@ -125,6 +125,16 @@ class Initial_2 implements Initialize {
     }
 }
 
+/*
+选择停靠点方法_1
+ */
+class PickDepot_1 implements PickDepot {
+    @Override
+    public CarrierRoute pickDepot(List<Depot> depots,List<RouteWithoutDepot> routes) {
+
+
+    }
+}
 
 
 
