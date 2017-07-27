@@ -26,6 +26,7 @@ public class CarrierRoute implements Route{
     }
 
     public double getDistance(){
+        tsp();//计算路径之前运行tsp
         double distance = 0;//环路的长度
         if (route.size() == 0 || route.size() == 1) {
             return 0;
@@ -33,7 +34,6 @@ public class CarrierRoute implements Route{
         for (int i = 0; i < route.size() - 1; i++) {
             distance = distance + route.get(i).getDistance(route.get(i + 1));
         }
-
         return distance + route.get(route.size() - 1).getDistance(route.get(0));
     }
 
@@ -51,8 +51,7 @@ public class CarrierRoute implements Route{
     /*
     在所有选定的车辆停靠点的集合运行贪婪算法求解TSP，得到装载车的行驶路径
     */
-    public void tsp(){
-
+    private void tsp(){
         int number = route.size();//TSP节点数量
         double[][] distance = new double[number][number];//距离矩阵
         boolean[] tags = new boolean[number];//标识节点是否访问过
@@ -72,7 +71,7 @@ public class CarrierRoute implements Route{
         for (int i = 1; i < number; i++) {
             double tempDistance = Double.MAX_VALUE;
             for (int j = 0; j < number; j++) {
-                if (tags[j] == false && tempDistance < distance[visit[i - 1]][j]) {
+                if (tags[j] == false && tempDistance > distance[visit[i - 1]][j]) {
                     tempDistance = distance[visit[i - 1]][j];
                     visit[i] = j;
                 }

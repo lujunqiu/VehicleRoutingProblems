@@ -14,6 +14,12 @@ public class UAVRoute implements Route{
         route = new ArrayList<Point>();//无人机飞行路径包含车辆停靠点与客户节点
     }
 
+    UAVRoute(Depot d,RouteWithoutDepot r){
+        route = new ArrayList<Point>();//无人机飞行路径包含车辆停靠点与客户节点
+        route.add(d);
+        route.addAll(r.getRoute());
+    }
+
     public void addPoint(Point point){
         route.add(point);
     }

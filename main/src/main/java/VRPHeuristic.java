@@ -9,7 +9,7 @@ public class VRPHeuristic {
     private Factory factory;//得到初始的地图信息，所有的相关节点集合
     private Initialize initialize;//初始化路径候选集的策略对象
     private PickDepot pickDepot;//选择停靠点的策略对象
-    List<RouteWithoutDepot> RouteToSelected;//路径候选集(不含停靠点)
+    public List<RouteWithoutDepot> RouteToSelected;//路径候选集(不含停靠点)
     List<UAVRoute> RoutesWithDepot;//包含停靠点的路径集合，无人机飞行路径
     private int k = 3;//在构造无人机飞行路径时候使用的参数
 
@@ -36,7 +36,7 @@ public class VRPHeuristic {
     }
 
     public CarrierRoute pickDepot(){//选择停靠点并且解决停靠点TSP
-        return pickDepot.pickDepot();
+        return pickDepot.pickDepot(factory.getDepots(),RouteToSelected);
     }
 
     /*
@@ -111,12 +111,25 @@ public class VRPHeuristic {
 //        vrpHeuristic.setFactory();
 //        vrpHeuristic.setInitialize();
 //        vrpHeuristic.setPickDepot();
-        while (true) {//终止条件
-            vrpHeuristic.initializeRouteSet();//初始化路径候选集
-            Solution solution = vrpHeuristic.construct();//构造初始解
-            Solution tabuSolution = vrpHeuristic.tabuSearch(solution);
-            vrpHeuristic.update(tabuSolution);
-        }
+//        while (true) {//终止条件
+//            vrpHeuristic.initializeRouteSet();//初始化路径候选集
+//            Solution solution = vrpHeuristic.construct();//构造初始解
+//            Solution tabuSolution = vrpHeuristic.tabuSearch(solution);
+//            vrpHeuristic.update(tabuSolution);
+//        }
+        Factory factory = new Factory();//得到原始初始化的节点集合
+        vrpHeuristic.setFactory(factory);
+
+        Initialize initialize1 = new Initial_1();//初始化候选集策略方法_1
+        vrpHeuristic.setInitialize(initialize1);
+
+        PickDepot pickDepot1 = new PickDepot_1();//停靠点选择策略方法_1
+        vrpHeuristic.setPickDepot(pickDepot1);
+
+        vrpHeuristic.initializeRouteSet();//初始化候选集
+        CarrierRoute carrierRoute = vrpHeuristic.pickDepot();//选择停靠点，得到停靠点集合
+
+        Solution firstSolution = new Solution(carrierRoute);
     }
 
 }

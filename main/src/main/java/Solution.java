@@ -1,4 +1,3 @@
-import com.sun.javafx.collections.MappingChange;
 
 import java.util.*;
 
@@ -22,17 +21,17 @@ public class Solution {
     /*
     计算完整解的总代价
      */
-    public double calculateCost() {
+    private void calculateCost() {
         cost = cost + carrierRoute.getDistance();//装载车行驶的路径
         Set<Map.Entry<Depot, Schedule>> entrySet = scheduleHashMap.entrySet();
         for (Map.Entry<Depot, Schedule> entry : entrySet) {
             Schedule schedule = entry.getValue();
             cost = cost + schedule.getCost();
         }
-        return cost;
     }
 
     public double getCost() {
+        calculateCost();
         return cost;
     }
 
