@@ -36,15 +36,16 @@ public class VRPHeuristic {
     }
 
     public CarrierRoute pickDepot(){//选择停靠点并且解决停靠点TSP
-        return pickDepot.pickDepot(factory.getDepots(),RouteToSelected);
+        return pickDepot.pickDepot(factory.getDepots(),pick());//第二个传入参数需要修改，在更新了RouteToSelected之后！
     }
 
     /*
     构造初始解
      */
     public Solution construct(){
-
-        return null;
+        initializeRouteSet();//初始化候选集
+        CarrierRoute carrierRoute = pickDepot();//选择停靠点，得到停靠点集合
+        return  new Solution(carrierRoute);
     }
 
     /*
@@ -126,10 +127,8 @@ public class VRPHeuristic {
         PickDepot pickDepot1 = new PickDepot_1();//停靠点选择策略方法_1
         vrpHeuristic.setPickDepot(pickDepot1);
 
-        vrpHeuristic.initializeRouteSet();//初始化候选集
-        CarrierRoute carrierRoute = vrpHeuristic.pickDepot();//选择停靠点，得到停靠点集合
-
-        Solution firstSolution = new Solution(carrierRoute);
+        Solution firstSolution = vrpHeuristic.construct();//初始解
+        System.out.println(firstSolution.getCost());
     }
 
 }
